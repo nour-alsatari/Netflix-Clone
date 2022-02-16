@@ -2,27 +2,23 @@ import React, { useEffect, useState } from "react";
 import MovieList from "./MovieList";
 
 function Home() {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([]); // because the data is NOT static and it's changing all the time
+  // initially it's an empty array because if i didnt make any request it will be empty
 
-  const getMovies = async () => {
-    try {
-      const response = await fetch(`${process.env.REACT_APP_SERVER}/trending`);
-      const data = await response.json();
-      console.log(data);
-      setMovies(data);
-    } catch (error) {
-      console.log("error", error);
-    }
-  };
+  async function getMovies() {
+    let response = await fetch(`${process.env.REACT_APP_SERVER}/trending`);
+    let moviesData = await response.json();
+    setMovies(moviesData); // i update movies variable with setMovies state and pass moviesData to the variable that had the empty array intially
+  }
 
   useEffect(() => {
     getMovies();
-  }, []);
+  }, []); // it will only render once when the component mounts because of the empty[]
 
   return (
     <>
       <h1>this is Home</h1>
-      <MovieList movies={movies} />
+      {movies && <MovieList movies={movies} />}
     </>
   );
 }
