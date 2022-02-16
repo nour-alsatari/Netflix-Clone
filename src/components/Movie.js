@@ -9,8 +9,10 @@ function Movie(props) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+
+
   function handleShowModal(movie) {
-    console.log(movie);
     handleShow();
     setChosenMovie(movie);
   }
@@ -28,21 +30,24 @@ function Movie(props) {
           <Button
             variant="primary"
             onClick={() => {
-              handleShowModal(props.movie);
+              handleShowModal(props.movie)
             }}
           >
-            add to the favorite list{" "}
+            Add to the favorite list{" "}
           </Button>
         </Card.Body>
       </Card>
 
-      {chosenMovie && (
-        <ModalMovie
-          show={show}
-          handleClose={handleClose}
-          chosenMovie={chosenMovie}
-        />
-      )}
+    {
+      chosenMovie && <ModalMovie
+      show={show}
+      handleClose={handleClose}
+      chosenMovie={chosenMovie}
+    />
+   
+   }
+        
+    
     </>
   );
 }
