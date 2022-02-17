@@ -11,6 +11,18 @@ function Home() {
     setMovies(moviesData); // i update movies variable with setMovies state and pass moviesData to the variable that had the empty array intially
   }
 
+  function updateMovies(newMovie, id) {
+    let updatedMovie = movies.map(movie => {
+        if (movie.id === id) {
+            movie.comment = newMovie.comment;
+            return movie;
+        } else {
+            return movie;
+        }
+    })
+    setMovies(updatedMovie);
+}
+
   useEffect(() => {
     getMovies();
   }, []); // it will only render once when the component mounts because of the empty[]
@@ -18,7 +30,7 @@ function Home() {
   return (
     <>
       <h1>this is Home</h1>
-      {movies && <MovieList movies={movies} />}
+      {movies && <MovieList movies={movies} updateMovies={updateMovies} />}
     </>
   );
 }

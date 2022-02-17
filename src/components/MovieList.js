@@ -5,7 +5,7 @@ function MovieList(props) {
     <>
       {props.movies.map((ele) => {
         return (
-            <Movie key={ele.id} movie={ele}/>
+            <Movie key={ele.id} movie={ele} updateMovies={props.updateMovies}/>
         );
       })}
     </>

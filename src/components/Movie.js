@@ -27,13 +27,14 @@ function Movie(props) {
           <Card.Title>{props.movie.title}</Card.Title>
           <Card.Text>{props.movie.overview}</Card.Text>
           <Card.Text>Released in {props.movie.release_date}</Card.Text>
+          <Card.Text> {props.movie.comment ? props.movie.comment : "no comment added"}</Card.Text>
           <Button
             variant="primary"
             onClick={() => {
               handleShowModal(props.movie)
             }}
           >
-            Add to the favorite list{" "}
+            more details{" "}
           </Button>
         </Card.Body>
       </Card>
@@ -43,6 +44,7 @@ function Movie(props) {
       show={show}
       handleClose={handleClose}
       chosenMovie={chosenMovie}
+      updateMovies = {props.updateMovies}
     />
    
    }
